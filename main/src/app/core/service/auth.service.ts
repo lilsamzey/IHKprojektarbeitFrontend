@@ -4,6 +4,9 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { environment } from 'environments/environment';
+import { Direction } from '@angular/cdk/bidi';
+import { SendEmailComponent } from 'app/send-email/send-email.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +15,10 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    public dialog: MatDialog,
+
+    ) {
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
   this.currentUserSubject = new BehaviorSubject<User>(currentUser);
@@ -72,6 +78,36 @@ export class AuthService {
         }
       );
   }
+
+
+
+
+
+
+
+
+
+sendEmail(email:string){
+
+  console.log('auth.service email' + email)
+
+  let tempDirection: Direction;
+  if (localStorage.getItem('isRtl') === 'true') {
+    tempDirection = 'rtl';
+  } else {
+    tempDirection = 'ltr';
+  }
+  const dialogRef = this.dialog.open(SendEmailComponent, {
+    data: {
+      email: email,
+      action: 'edit',
+    },
+    direction: tempDirection,
+  });
+        }
+
+
+
 
 
 

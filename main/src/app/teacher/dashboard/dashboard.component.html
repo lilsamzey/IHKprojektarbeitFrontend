@@ -187,7 +187,7 @@
 
 
 
-
+<!--
 
     <div class="row">
       <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
@@ -251,7 +251,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
 
@@ -310,7 +310,7 @@
 
 
 
-
+<!--
 
     <div class="col-md-12">
       <div class="card">
@@ -355,7 +355,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
 
@@ -388,7 +388,31 @@
                   </td>
                 </tr> -->
 
+
+
+
+
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Course Number</th>
+                    <th>Course Name</th>
+
+
+
+                  </tr>
+                </thead>
+
+
+
+
+
+
+
+
+
                  <tr *ngFor="let course of courses">
+                  <td>{{ courses.indexOf(course)+1}}</td>
                   <td><i class="fas fa-palette pill-style col-indigo"></i> {{ course.courseName }}</td>
                   <td class="text-end">
                     <span class="badge-outline">{{ course.CourseId }}</span>

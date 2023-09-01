@@ -315,10 +315,10 @@
                         <td>{{teacher.TeacherId}}</td>
                         <td>{{teacher.firstName}}</td>
                         <td>{{teacher.lastName}}</td>
-                        <td> <span class="badge bg-purple">{{teacher.email}}</span></td>
+                        <td> <span class="badge bg-purple btn" (click)="sendEmail(teacher.email)">{{teacher.email}}</span></td>
 
 
-                        <td> <button mat-flat-button   ><span class="badge bg-pink">SEND MESSAGE</span></button></td>
+                        <td> <button mat-flat-button  (click)="sendEmail(teacher.email)" ><span class="badge bg-pink">SEND MESSAGE</span></button></td>
                       </tr>
 
                     </tbody>
@@ -402,10 +402,10 @@
             <td>{{student.StudentId}}</td>
             <td>{{student.firstName}}</td>
             <td>{{student.lastName}}</td>
-            <td> <span class="badge bg-purple">{{student.email}}</span></td>
+            <td> <span class="badge bg-purple btn" (click)="sendEmail(student.email)">{{student.email}}</span></td>
             <td>{{student.mobile}}</td>
             <td> <button mat-flat-button  (click)="studentDetails(student)" ><span class="badge bg-pink">Details</span></button></td>
-            <td> <button mat-flat-button   ><span class="badge bg-pink">SEND MESSAGE</span></button></td>
+            <td> <button mat-flat-button  (click)="sendEmail(student.email)" ><span class="badge bg-pink">SEND MESSAGE</span></button></td>
             <td> </td>
           </tr>
         </tbody>

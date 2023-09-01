@@ -119,4 +119,15 @@ if(this.studentsService.studentNotesofStudentService.length === 0){
 
 
 
+
+
+
+
+  sendEmail(email:string){this.authService.sendEmail(email);}
+
+
+
+
+
+
 }

@@ -67,7 +67,7 @@
                   </li>
                   <li class="list-group-item">
                     <b>Email </b>
-                    <div class="profile-desc-item float-end">{{data.student.email}} </div>
+                    <div class="profile-desc-item float-end" (click)="sendEmail(data.student.email)"><span class="badge bg-pink">{{data.student.email}}</span> </div>
                    </li>
                 </ul>
               </div>
@@ -136,7 +136,7 @@
                       <div class="col-md-3 col-6 b-r">
                         <strong>Email</strong>
                         <br>
-                        <p class="text-muted">{{data.student.email}}</p>
+                        <p class="text-muted"(click)="sendEmail(data.student.email)"><span class="badge bg-pink">{{data.student.email}}</span></p>
                       </div>
                       <div class="col-md-3 col-6">
                         <strong>Student Number</strong>

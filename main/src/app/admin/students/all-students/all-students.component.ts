@@ -413,45 +413,7 @@ async studentDetails(row: any) {
 
 
 
-
-
-  sendEmail(email:string){
-
-
-    console.log('detaydan gelen' + email)
-
-    let tempDirection: Direction;
-    if (localStorage.getItem('isRtl') === 'true') {
-      tempDirection = 'rtl';
-    } else {
-      tempDirection = 'ltr';
-    }
-    const dialogRef = this.dialog.open(SendEmailComponent, {
-      data: {
-        email: email,
-        action: 'edit',
-      },
-      direction: tempDirection,
-    });
-    // this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-    //   if (result === 1) {
-    //     // When using an edit things are little different, firstly we find record inside DataService by id
-    //     const foundIndex = this.exampleDatabase?.dataChange.value.findIndex(
-    //       (x: { id: number | undefined; }) => x.id === this.id
-    //     );
-    //     // Then you update that record using data from dialogData (values you enetered)
-    //     if (foundIndex != null && this.exampleDatabase) {
-    //       this.exampleDatabase.dataChange.value[foundIndex] =
-    //         this.teachersService.getDialogData();
-          // And lastly refresh table
-          // this.refreshTable();
-          // this.showNotification(
-          //   'black',
-          //   'Edit Record Successfully...!!!',
-          //   'bottom',
-          //   'center'
-          // );
-        }
+  sendEmail(email:string){this.authService.sendEmail(email);}
 
 
 

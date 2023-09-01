@@ -23,6 +23,7 @@ import {TeacherService} from '../teacher.service'
 
 
 import{StudentinfoforteacherComponent} from '../studentinfoforteacher/studentinfoforteacher.component'
+import { SendEmailComponent } from 'app/send-email/send-email.component';
 
 
 export interface DialogData {
@@ -441,6 +442,13 @@ getFileCountOfCourse(): void {
 
 
 
+
+
+
+
+
+
+sendEmail(email:string){this.authService.sendEmail(email);}
 
 
 

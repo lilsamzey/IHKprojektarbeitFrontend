@@ -1,5 +1,5 @@
 
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
 import { CoursesServiceService } from '../../admin/courses/courses-service.service';
 import { MatSort } from '@angular/material/sort';
@@ -19,6 +19,8 @@ import {StudentService} from '../student.service'
 import{AuthService} from '../../core/service/auth.service'
 
 import { HttpClient } from '@angular/common/http';
+import { Direction } from '@angular/cdk/bidi';
+import { SendEmailComponent } from 'app/send-email/send-email.component';
 
 
 
@@ -156,7 +158,8 @@ FileCountOfCourse=0;
     private snackBar: MatSnackBar,
     private studentService:StudentService,
     private authService:AuthService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    public dialog: MatDialog,
 
   ) {
     this.action = data.action;
@@ -426,6 +429,32 @@ getFileCountOfCourse(): void {
     }
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+sendEmail(email:string){this.authService.sendEmail(email);}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

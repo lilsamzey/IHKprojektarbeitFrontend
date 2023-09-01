@@ -682,7 +682,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '/teacher/lectures',
-    title: 'MENUITEMS.TEACHER.LIST.LECTURES',
+    title: 'My Courses',
     iconType: 'material-icons-two-tone',
     icon: 'menu_book',
     class: '',
