@@ -18,6 +18,7 @@ import {CourseannouncementService} from './courseannouncement.service'
 import {AuthService} from '../../../core/service/auth.service'
 
 import Swal from 'sweetalert2';
+import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 
 
 
@@ -73,8 +74,9 @@ export class CourseannouncementComponent implements OnInit  {
 
   messageForUser=''
 
+  userRole!:string;
 
-showButton=false;
+  showButton=false;
 
 
   editingMessageId: number | null = null;
@@ -83,13 +85,18 @@ showButton=false;
 
 
 
-  constructor(private courseannouncementService:CourseannouncementService, private authService:AuthService) {}
+  constructor(
+    private courseannouncementService:CourseannouncementService,
+    private authService:AuthService,
+    private sanitizer: DomSanitizer
+    ) {}
 
   // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
   ngOnInit(): void {
 
     this.senderId=this.authService.currentUserValue.id
-    this.senderName=this.authService.currentUserValue.firstName
+    this.senderName=this.authService.currentUserValue.firstName;
+    this.userRole=this.authService.currentUserValue.role;
 
     console.log('message from chatcomp.ts', this.courseId)
     //this.fetchUsers();
@@ -136,14 +143,20 @@ showButton=false;
 
 
   sendMessage() {
+    // Eğer mesaj boşsa, kullanıcıya bir uyarı göster ve fonksiyonu sonlandır.
+    if (!this.messageContent || this.messageContent.trim() === '') {
+      this.messageForUser = 'Empty messages cannot be sent.';
+      Swal.fire(this.messageForUser);
+      return;
+    }
+
     const characterCount = this.messageContent.length; // Mesajdaki karakter sayısını hesapla
 
     if (characterCount > 12000) {
       // Angular kullanıcısına mesaj ver
-      console.log("Mesaj 12000 karakteri aşmaktadır.");
-      this.messageForUser='The message cannot exceed 12000 characters. Edit your message again.'
-      Swal.fire(this.messageForUser);
 
+      this.messageForUser = 'The message cannot exceed 12000 characters. Edit your message again.';
+      Swal.fire(this.messageForUser);
       return;
     }
 
@@ -164,6 +177,23 @@ showButton=false;
     );
   }
 
+
+
+
+
+
+
+
+  transformLinks(text: string): SafeHtml {
+    // URL'leri dönüştürme
+    const replacedText = text.replace(/(https?:\/\/[^\s]+)/g, url => `<a href="${url}" target="_blank">${url}</a>`);
+
+    // Yeni satırları <br> ile değiştirme
+    const newLineReplacedText = replacedText.replace(/\n/g, '<br>');
+
+    // Güvenli HTML olarak işaretleme
+    return this.sanitizer.bypassSecurityTrustHtml(newLineReplacedText);
+  }
 
 
 

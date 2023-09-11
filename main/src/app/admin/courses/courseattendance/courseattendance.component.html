@@ -89,7 +89,10 @@
             <th scope="row">{{ attendanceDetailsByDate.indexOf(attandance) + 1 }}</th>
             <td>{{ attandance.firstName }} {{ attandance.lastName }}</td>
             <td>{{ attandance.StudentId  }}</td>
-            <td>{{ attandance.Attendance ? 'Attended' : 'Did not attend' }}</td>
+            <td >
+             <span [ngClass]="{'badge badge-solid-green': attandance.Attendance, 'badge badge-solid-red': !attandance.Attendance}">{{ attandance.Attendance ? 'Attended' : 'Did not attend' }} </span>
+            </td>
+
             <td >{{attandance.email}}</td>
             <td >{{attandance.mobile}}</td>
             <td >{{attandance.Explaining}}</td>

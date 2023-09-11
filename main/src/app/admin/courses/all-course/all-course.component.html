@@ -1,5 +1,5 @@
 <section class="content">
-  <div class="content-block">
+  <div class="content-block" >
     <div class="block-header" *ngFor="let breadscrum of breadscrums">
       <!-- breadcrumb -->
       <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
@@ -15,6 +15,210 @@
 <div class="row">
       <div class="col-md-12">
         <mat-tab-group>
+
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <i class="material-icons-two-tone psr-3">list_alt</i>
+              Statistic View
+            </ng-template>
+
+
+
+
+
+
+
+
+
+
+<div >
+
+            <div class="mt-5" >
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                <div class="card" >
+                  <div class="materialTableHeader">
+                    <div class="left">
+                      <ul class="header-buttons-left ms-0">
+                        <li class="tbl-title">
+                          <h2>All Courses</h2>
+                        </li>
+                        <li class="tbl-search-box">
+                          <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                          <input [(ngModel)]="searchText" placeholder="Search by Course Name" type="text" (ngModelChange)="filterCourses()" class="browser-default search-field"
+                            aria-label="Search box">
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="right">
+                      <ul class="tbl-export-btn">
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="ADD">
+                            <button mat-mini-fab color="primary" (click)="addNew()">
+                              <mat-icon class="col-white">add</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li class="tbl-header-btn">
+                          <div class="m-l-10" matTooltip="REFRESH">
+                            <button mat-mini-fab color="primary" (click)="ngOnInit()">
+                              <mat-icon class="col-white">refresh</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        <li class="tbl-header-btn">
+                          <!-- <div class="m-l-10" [hidden]=!selection.hasValue() matTooltip="DELETE">
+                            <button mat-mini-fab color="warn" (click)="removeSelectedRows()">
+                              <mat-icon class="col-white">delete
+                              </mat-icon>
+                            </button>
+                          </div> -->
+                        </li>
+                        <li>
+                          <div class="export-button m-l-10" matTooltip="XLSX">
+                            <img src="assets/images/icons/xlsx.png" alt="" (click)="exportExcel()" />
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                  <!-- <div class="header">
+                    <h2>Course Statistics</h2>
+                  </div> -->
+
+                  <div class="row">
+                    <!-- <div class="col-md-6">
+
+
+                      <input type="text" [(ngModel)]="searchText" class="form-control" (ngModelChange)="filterCourses()" placeholder="Search by Course Name">
+
+                    </div> -->
+                  </div>
+                  <div class="body ">
+                    <table class="table table-hover table-responsive">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Course Nr.</th>
+                          <th>Course Name</th>
+                          <th>Enrolled Students</th>
+                          <th>Enrolled Teachers</th>
+                          <th>Total Lectures</th>
+                          <th>Attendance Percentage</th>
+                          <th>Start Date</th>
+                          <th>Finish Date</th>
+                          <th>Length</th>
+                          <th>Status</th>
+                          <th>Details</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let course of filteredCourses">
+                          <div *ngIf="exampleDatabase?.isTblLoading" class="tbl-spinner">
+                            <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                            </mat-progress-spinner>
+                          </div>
+
+                          <th scope="row">{{courseData.indexOf(course)+1}}</th>
+                          <td>{{course.CourseId}}</td>
+                          <td>{{course.courseName}}</td>
+                          <td> <span class="badge bg-pink">{{course.EnrolledStudents}} </span></td>
+                          <td>  <span class="badge bg-blue">{{course.EnrolledTeachers}}</span></td>
+                          <td> <span class="badge bg-blue">{{course.TotalLectures}}</span></td>
+
+                          <td style="width: 15%; text-align: left; ">
+
+                            <div class="progress">
+                              <div [ngClass]="['progress-bar', 'width-per-' + (course.AttendancePercentage)]" role="progressbar" aria-valuemin="0"
+                                aria-valuemax="100">{{ course.AttendancePercentage }} %</div>
+                            </div>
+
+                          </td>
+
+
+
+                          <td>{{course.startDate | date:'dd/MM/yyyy'}}</td>
+                          <td>{{course.finishDate | date:'dd/MM/yyyy'}}</td>
+
+                          <td>{{course.CurrentWeek}}/{{course.length}} weeks</td>
+                          <td>
+                            <span *ngIf="course.Status === 1" class="badge bg-success">Active</span>
+                            <span *ngIf="course.Status === 0" class="badge bg-danger">Finished</span>
+                          </td>
+
+
+                          <td>
+                            <button (click)="details(course)"  class="btn " ><span class="badge bg-cyan" > Details </span></button>
+                          </td>
+
+                          <td>
+                              <button (click)="editCall(course)"  class="btn " ><img src="../assets/images/banner/edit.png" style="width: 30px;" alt=""></button>
+                          </td>
+
+                          <td >
+                              <button (click)="deleteItem(course)" class="btn " ><img src="../assets/images/banner/delete.png" style="width: 30px;" alt=""></button>
+                          </td>
+
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div> </div> </div>
+
+              </div>
+
+              </mat-tab>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <mat-tab>
             <ng-template mat-tab-label>
               <i class="material-icons-two-tone psr-3">list_alt</i>
@@ -82,12 +286,19 @@
 
 
 
-            <div class="row clearfix">
+            <div class="row clearfix" *ngIf="!loading; else loadingTemplate">
+              <ng-template #loadingTemplate>
+                <div class="spinner-container">
+                  <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+              </ng-template>
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                <div class="card">
 
 
-                 <div class="body table-responsive" style="width: 100%;">
+                 <div class="body table-responsive" >
                    <table  class="table table-striped">
                      <thead >
                        <tr >
@@ -131,6 +342,141 @@
                        </div>
                        </div>
                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                       <div class="row clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="card">
+                            <div class="header">
+                              <h2>Course Statistics</h2>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-6">
+
+
+                                <input type="text" [(ngModel)]="searchText" class="form-control" (ngModelChange)="filterCourses()" placeholder="Search by Course Name">
+
+                              </div>
+                            </div>
+                            <div class="body ">
+                              <table class="table table-hover table-responsive">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>Course Nr.</th>
+                                    <th>Course Name</th>
+                                    <th>Enrolled Students</th>
+                                    <th>Enrolled Teachers</th>
+                                    <th>Total Lectures</th>
+                                    <th>Attendance Percentage</th>
+                                    <th>Start Date</th>
+                                    <th>Finish Date</th>
+                                    <th>Length</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let course of filteredCourses">
+                                    <div *ngIf="exampleDatabase?.isTblLoading" class="tbl-spinner">
+                                      <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                                      </mat-progress-spinner>
+                                    </div>
+
+                                    <th scope="row">{{courseData.indexOf(course)+1}}</th>
+                                    <td>{{course.CourseId}}</td>
+                                    <td>{{course.courseName}}</td>
+                                    <td> <span class="badge bg-pink">{{course.EnrolledStudents}} </span></td>
+                                    <td>  <span class="badge bg-blue">{{course.EnrolledTeachers}}</span></td>
+                                    <td> <span class="badge bg-blue">{{course.TotalLectures}}</span></td>
+
+                                    <td style="width: 15%; text-align: left; ">
+
+                                      <div class="progress">
+                                        <div [ngClass]="['progress-bar', 'width-per-' + (course.AttendancePercentage)]" role="progressbar" aria-valuemin="0"
+                                          aria-valuemax="100">{{ course.AttendancePercentage }} %</div>
+                                      </div>
+
+                                    </td>
+
+
+
+                                    <td>{{course.startDate | date:'dd/MM/yyyy'}}</td>
+                                    <td>{{course.finishDate | date:'dd/MM/yyyy'}}</td>
+
+                                    <td>{{course.CurrentWeek}}/{{course.length}} weeks</td>
+                                    <td>
+                                      <span *ngIf="course.Status === 1" class="badge bg-success">Active</span>
+                                      <span *ngIf="course.Status === 0" class="badge bg-danger">Finished</span>
+                                    </td>
+
+
+                                    <td>
+                                      <button (click)="details(course)"  class="btn " ><span class="badge bg-cyan" > Details </span></button>
+                                    </td>
+
+                                    <td>
+                                        <button (click)="editCall(course)"  class="btn " ><img src="../assets/images/banner/edit.png" style="width: 30px;" alt=""></button>
+                                    </td>
+
+                                    <td >
+                                        <button (click)="deleteItem(course)" class="btn " ><img src="../assets/images/banner/delete.png" style="width: 30px;" alt=""></button>
+                                    </td>
+
+                                  </tr>
+
+                                </tbody>
+                              </table>
+                            </div>
+
+                          </div> </div> </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

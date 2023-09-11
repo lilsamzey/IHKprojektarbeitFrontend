@@ -46,20 +46,49 @@
 
 
               <ng-scrollbar style="min-height: 600px; margin: 1%;" class="chat-history" visibility="hover">
-                <div *ngFor="let message of messages" id="12">
+                <div *ngFor="let message of messages" >
 
                   <div class="message-data" style="max-height: 10px;">
                     <span class="badge col-orange">{{message.firstName}} {{message.lastName}}</span>
                     <span class="message-data-time">{{message.timestamp | date:'yyyy-MM-dd HH:mm:ss':'UTC'}}</span>
                   </div>
 
+
+
                   <div [ngClass]="{'message': true, 'other-message': senderId === message.senderId, 'my-message': senderId !== message.senderId}">
-                    <p>{{message.messageContent}}
+                    <div [innerHTML]="transformLinks(message.messageContent)">
+
+
+
+                    </div>
+                    <!-- <span *ngIf="senderId === message.senderId" class="float-end" style="margin-bottom: -9px;">
+                      <app-feather-icons [icon]="'edit'" (click)="updateMessage(message)" [class]="'btn tbl-fav-edit'"></app-feather-icons>
+                      <button class="badge bg-pink" (click)="deleteMessage(message)">Delete</button><button class="badge bg-success" (click)="updateMessage(message)">Update</button>
+                    </span> -->
+                        <div *ngIf="senderId === message.senderId || userRole === 'Admin'">
+                                  <button mat-icon-button (click)="$event.stopPropagation()" (click)="updateMessage(message)"
+                                    class="tbl-action-btn">
+                                    <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                                  </button>
+
+                                  <button mat-icon-button (click)="$event.stopPropagation()" (click)="deleteMessage(message)"
+                                    class="tbl-action-btn">
+                                    <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete '"></app-feather-icons>
+                                  </button>
+                        </div>
+                  </div>
+
+
+
+<!--
+                  <div [ngClass]="{'message': true, 'other-message': senderId === message.senderId, 'my-message': senderId !== message.senderId}">
+                    <p [innerHTML]="transformLinks(message.messageContent)">
+
                       <span *ngIf="senderId === message.senderId" class="float-end">
                         <button class="badge bg-pink" (click)="deleteMessage(message)">Delete</button><button class="badge bg-success" (click)="updateMessage(message)">Update</button>
                       </span>
                     </p>
-                  </div>
+                  </div> -->
 
                 </div>
               </ng-scrollbar>

@@ -10,7 +10,7 @@
 
     <div class="row">
       <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-        <div class="card">
+        <div class="card info-box7 l-bg-purple order-info-box7" >
           <div class="body">
             <div class="row align-items-center">
               <!-- <div class="col-md-4 mb-0">
@@ -19,11 +19,11 @@
                     [labels]="doughnutChartLabels" [options]="doughnutChartOptions" [type]="doughnutChartType"></canvas>
                 </div>
               </div> -->
-              <div class="col-md-12">
+              <div class="col-md-12 col-white">
                 <h4>
-                  <div class="weight-600 col-pink pt-1">Hello, {{userName}}. This is your teacher dashboard.</div>
+                  <div class="weight-600 "><h2>Hello, {{userName}}. This is your teacher dashboard.</h2></div>
                 </h4>
-                <p class="font-15 max-width-600">You have {{courses.length}} different courses. this tool provides easy access to all the data you could use to enhance student success.</p>
+                <p class="font-15 max-width-600">You have {{courses.length}} different courses. This tool provides easy access to all the data you could use to enhance student success.</p>
                 <div class="row">
                   <div class="col-lg-6">
                     <div><i class="fa fa-circle dot1 msr-2"></i> {{courses[0]?.courseName}} </div>
@@ -35,10 +35,10 @@
                     <div *ngIf="courses[2]?.courseName"><i class="fa fa-circle dot3 msr-2"></i> {{courses[2]?.courseName}} </div>
                   </div>
                   <div class="col-lg-6">
-                    <div *ngIf="courses[3]?.courseName"><i class="fa fa-circle dot4 msr-2"></i> {{courses[3]?.courseName}} </div>
+                    <div *ngIf="courses[3]?.courseName"><i class="fa fa-circle dot1 msr-2"></i> {{courses[3]?.courseName}} </div>
                   </div>
                   <div class="col-lg-6">
-                    <div *ngIf="courses[4]?.courseName"><i class="fa fa-circle dot4 msr-2"></i> {{courses[4]?.courseName}} </div>
+                    <div *ngIf="courses[4]?.courseName"><i class="fa fa-circle dot2 msr-2"></i> {{courses[4]?.courseName}} </div>
                   </div>
                   <div class="col-lg-6">
                     <div *ngIf="courses[5]?.courseName"><i class="fa fa-circle dot4 msr-2"></i> Others </div>
@@ -49,8 +49,8 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-        <div class="card">
+      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 ">
+        <div class="card ">
           <div class="body">
             <div class="row align-items-center">
               <!-- <div class="col-md-4 mb-0">
@@ -59,9 +59,9 @@
                     [labels]="doughnutChartLabels" [options]="doughnutChartOptions" [type]="doughnutChartType"></canvas>
                 </div>
               </div> -->
-              <div class="col-md-12">
+              <div class="col-md-12 ">
                 <h4>
-                  <div class="weight-600 col-pink pt-1">Why this teacher dashboard?</div>
+                  <div class="weight-600  pt-1">Why this teacher dashboard?</div>
                 </h4>
                 <p class="font-15 max-width-600">With this dashboard, you can elevate your digital interaction with your students, closely monitoring their progress and success.
                   Our teacher panel is designed to save you time, allowing you to channel more energy into addressing the individual needs of your students and achieving excellence in education.

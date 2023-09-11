@@ -64,6 +64,8 @@ export interface DialogData {
   templateUrl: './all-course.component.html',
   styleUrls: ['./all-course.component.scss'],
 })
+
+
 export class AllCourseComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
   [x: string]: any;
 
@@ -87,6 +89,37 @@ items:any[] =[]
 
 exampleDatabase: any;
 teachersService: any;
+
+
+
+
+
+
+
+
+
+
+
+courseData:any[] = [];
+totalCourses!:number;
+totalStudents!:number;
+
+
+filteredCourses: any[] = [];
+searchText = '';
+
+
+
+loading= true; // Initially set to true
+
+loadingTemplate: any;
+
+
+
+
+
+
+
 
 
   breadscrums = [
@@ -132,6 +165,7 @@ console.log('all course conmponent')
 
 
 this.getAllCourses();
+this.CourseStudentCounts();
 
 
   }
@@ -144,19 +178,83 @@ this.getAllCourses();
 
 
 
-
-
-  async getAllCourses(){
-
+  async getAllCourses() {
+    this.loading = true; // Set the loading flag to true before fetching data
     try {
       this.courses = await this.coursesServiceService.allCourses();
-
+      this.loading = false; // Set the loading flag to false after fetching data
     } catch (error) {
-      console.error('Courses werent found:', error);
+      console.error('Courses weren\'t found:', error);
+      this.loading = true; // Set the loading flag to false even if there was an error
+    }
+  }
+
+
+
+
+
+
+
+
+
+    CourseStudentCounts(){
+
+
+
+      this.coursesServiceService.CourseStudentCounts().subscribe(data => {
+        this.courseData = data; // API'den gelen verileri courseData'ya atıyoruz
+        this.filterCourses();
+        console.log(this.courseData)
+
+        const chartData = this.courseData.map(course => {
+          return {
+            value: course.EnrolledStudents,
+            name: course.CourseName,
+          };
+        });
+
+      });
+
     }
 
 
+
+
+
+    filterCourses() {
+      this.filteredCourses = this.courseData.filter(course => {
+        return course.courseName.toLowerCase().includes(this.searchText.toLowerCase());
+      });
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

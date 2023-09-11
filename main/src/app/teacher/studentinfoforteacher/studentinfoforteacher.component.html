@@ -11,11 +11,22 @@
         <div class="card">
           <div class="m-b-20">
             <div class="contact-grid">
-              <div class="profile-header bg-success">
-                <div class="user-name">{{data.student.firstName}} {{data.student.lastName}}</div>
-                <!-- <div class="name-center">Computer Department</div> -->
+
+
+
+              <div class="card-body no-padding height-9 l-bg-purple">
+                <div class="row">
+                  <!-- <div class="about-course-img">
+                    <img src="assets/images/banner/example.jpg" alt="">
+                  </div> -->
+                </div>
+                <div class="mt-3">
+                  <p><span class="badge bg-pink">Student Name </span></p>
+                  <h4 class="profile-usertitle-name"> {{data.student.firstName}} {{data.student.lastName}} </h4>
+                </div>
               </div>
-              <img src="assets/images/banner/example.jpg" class="user-img" alt="">
+
+
               <p>{{data.student.address}}</p>
 
 
@@ -24,7 +35,7 @@
                 <span class="phone">
                   <i class="material-icons">phone</i>{{data.student.mobile}} </span>
               </div>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-4">
                   <h5>564</h5>
                   <small>Following</small>
@@ -38,7 +49,7 @@
                   <h5>565</h5>
                   <small>Post</small>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

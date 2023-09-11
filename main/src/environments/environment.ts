@@ -3,12 +3,23 @@ export const environment = {
 
 
 
+
+
+
+
+  //Lochal
   //apiUrl: 'http://localhost:3000',
 
 
 
 //Azure Web Service AWS MSSQL
 apiUrl: 'https://nodejsawssql.azurewebsites.net',
+
+
+
+
+
+
 
 
 

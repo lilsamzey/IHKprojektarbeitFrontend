@@ -98,7 +98,7 @@ this.CourseStudentCounts()
       const chartData = this.courseData.map(course => {
         return {
           value: course.EnrolledStudents,
-          name: course.CourseName,
+          name: course.courseName,
         };
       });
       (this.pie_chart.series as echarts.SeriesOption[])[0].data = chartData;
@@ -112,7 +112,7 @@ this.CourseStudentCounts()
 
   filterCourses() {
     this.filteredCourses = this.courseData.filter(course => {
-      return course.CourseName.toLowerCase().includes(this.searchText.toLowerCase());
+      return course.courseName.toLowerCase().includes(this.searchText.toLowerCase());
     });
   }
 

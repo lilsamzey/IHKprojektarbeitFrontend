@@ -41,8 +41,10 @@ export class Courses {
   price: number | undefined;
   teacher: string | undefined;
   startDate: Date | undefined;
+  finishDate: Date | undefined;
   enrolledStudents: Students[] | undefined;
   courseDetails!: string;
+  AttendancePercentage!: string;
 
   constructor(init?: Partial<Courses>) {
     Object.assign(this, init);
