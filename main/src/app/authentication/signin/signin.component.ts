@@ -76,7 +76,7 @@ userMessage='';
             if (res) {
               setTimeout(() => {
                const currentUser = this.authService.currentUserValue;
-               console.log('current Username:', currentUser.username);
+               console.log('current Username:', currentUser);
                 const role = this.authService.currentUserValue.role;
 
                  if (role === Role.All || role === Role.Admin) {

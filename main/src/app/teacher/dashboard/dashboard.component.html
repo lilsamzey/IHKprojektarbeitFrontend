@@ -283,7 +283,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let course of courses ">
+                <tr *ngFor="let course of courses " class="btn-custom-hover" (click)="details(course)">
                   <th scope="row">{{courses.indexOf(course)+1}}</th>
                   <td>{{course.CourseId}}</td>
                   <td>{{course.courseName}}</td>
