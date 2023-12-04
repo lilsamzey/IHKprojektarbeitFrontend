@@ -117,6 +117,8 @@ loadingTemplate: any;
 
 
 
+currentSorting = '';  // Şu anda hangi sütunun sıralandığını takip eder
+isDescending = false;
 
 
 
@@ -487,6 +489,26 @@ deleteItem(course: Courses) {
 
 
 
+
+
+sortTable(column: string) {
+  if (this.currentSorting === column) {
+    this.isDescending = !this.isDescending;
+  } else {
+    this.currentSorting = column;
+    this.isDescending = false;
+  }
+
+  this.filteredCourses.sort((a, b) => {
+    if (a[column] > b[column]) {
+      return this.isDescending ? -1 : 1;
+    } else if (a[column] < b[column]) {
+      return this.isDescending ? 1 : -1;
+    } else {
+      return 0;
+    }
+  });
+}
 
 
 

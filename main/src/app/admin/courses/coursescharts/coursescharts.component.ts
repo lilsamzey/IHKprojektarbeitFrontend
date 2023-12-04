@@ -278,8 +278,8 @@ this.CourseStudentCounts()
 
 
 
-  createCourseChart(courseData: { CourseName: string, EnrolledStudents: number }[]) {
-    const categories = courseData.map(course => course.CourseName);
+  createCourseChart(courseData: { courseName: string, EnrolledStudents: number }[]) {
+    const categories = courseData.map(course => course.courseName);
     const studentCounts = courseData.map(course => course.EnrolledStudents);
 
     this.totalCourses = courseData.length;
